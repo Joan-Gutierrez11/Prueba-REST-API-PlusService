@@ -28,19 +28,10 @@ Route::group(['middleware' => ['jwt.verify']], function(){
     Route::get('usuario', [AutenticacionController::class, 'getUser']);
     Route::get('logout', [AutenticacionController::class, 'logout']);
 
-    // Route::apiResource('libros', LibrosController::class);
-    // Route::get('disponibilidad/{localidad}/libro/{nombre}', [LibrosController::class, 'obtenerLibrosLocalidadNombre']);
+    Route::apiResource('libros', LibrosController::class);
+    Route::get('disponibilidad/{localidad}/libro/{nombre}', [LibrosController::class, 'obtenerLibrosLocalidadNombre']);
 
-    // Route::get('renta_libros', [RentaLibrosController::class, 'verLibrosRentados']);
-    // Route::post('renta_libros', [RentaLibrosController::class, 'realizarRentaLibro']);
-    // Route::delete('renta_libros/{renta}', [RentaLibrosController::class, 'devolucionLibro']);
+    Route::get('renta_libros', [RentaLibrosController::class, 'verLibrosRentados']);
+    Route::post('renta_libros', [RentaLibrosController::class, 'realizarRentaLibro']);
+    Route::delete('renta_libros/{renta}', [RentaLibrosController::class, 'devolucionLibro']);
 });
-
-Route::apiResource('libros', LibrosController::class);
-Route::get('disponibilidad/{localidad}/libro/{nombre}', [LibrosController::class, 'obtenerLibrosLocalidadNombre']);
-
-Route::get('renta_libros', [RentaLibrosController::class, 'verLibrosRentados']);
-Route::post('renta_libros', [RentaLibrosController::class, 'realizarRentaLibro']);
-Route::delete('renta_libros/{renta}', [RentaLibrosController::class, 'devolucionLibro']);
-
-
