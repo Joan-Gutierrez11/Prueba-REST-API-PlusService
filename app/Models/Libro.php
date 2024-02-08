@@ -12,8 +12,10 @@ class Libro extends Model
     protected $fillable = [
         'libro',
         'cantidad',
-        'localizacion',
-        'categoria'
+        'localidad',
+        'categoria',
+        'direccion',
+        'fecha_lanzamiento'
     ];
 
     public function usuarios()

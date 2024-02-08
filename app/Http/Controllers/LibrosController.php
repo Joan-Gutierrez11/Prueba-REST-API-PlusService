@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Libro;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -41,12 +42,14 @@ class LibrosController extends Controller
         $validador =  Validator::make($request->all(), [
             'libro' => 'required|max:255',
             'cantidad' => 'required',
-            'localizacion' => 'required',
+            'localidad' => 'required',
             'categoria' => 'required',
+            'direccion' => 'required',
+            'fecha_lanzamiento' => 'required'
         ]);
 
         if($validador->fails())
-            return;
+            return response($validador->errors()->toJson(), Response::HTTP_BAD_REQUEST);
 
         $nuevo_libro = Libro::create($validador->validated());
         return response()->json($nuevo_libro, 201);
